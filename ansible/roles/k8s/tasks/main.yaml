@@ -1,13 +1,15 @@
-# - name: Install Open-shift 
-#   pip:
-#     name: openshift
-   
-- name: Provision Deployment object 
-  k8s:
-    state: present
-    src: C:\Users\myvm\terraform-ansible-k8s project\k8s\deployement.yaml
+# # - name: Install Open-shift 
+# #   pip:
+# #     name: openshift
 
-- name: Provision LoadBalancer service object 
-  k8s:
+- name: Provision Deployment object
+  kubernetes.core.k8s:
     state: present
-    src: C:\Users\myvm\terraform-ansible-k8s project\k8s\service.yaml
+    src: /mnt/c/Users/Owner/terraform-ansible-k8s-project/k8s/deployement.yaml
+    kubeconfig: /home/greekgod/.kube/config
+
+- name: Provision LoadBalancer service object
+  kubernetes.core.k8s:
+    state: present
+    src: /mnt/c/Users/Owner/terraform-ansible-k8s-project/k8s/service.yaml
+    kubeconfig: /home/greekgod/.kube/config
